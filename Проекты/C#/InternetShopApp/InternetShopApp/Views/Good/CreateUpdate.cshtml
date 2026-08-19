@@ -1,0 +1,35 @@
+﻿@model GoodForm
+
+@{
+    ViewData["Title"] = $"{ViewBag.ActionName} записи";
+}
+
+<form asp-controller="Good" asp-action="@ViewBag.MethodName" method="post">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Title">Название:</label>
+        <input type="text" asp-for="Title" value="@Model.Title" />
+        <span class="validation" asp-validation-for="Title"></span>
+    </div>
+    <br /><div class="form-group">
+        <label asp-for="Description">Описание:</label>
+        <br /><textarea asp-for="Description">@Model.Description</textarea>
+        <span class="validation" asp-validation-for="Description"></span>
+    </div>
+    <br /><input type="submit" class="btn btn-danger" value="Сохранить" />
+</form>
+
+<style>
+    textarea {
+        width: 450px;
+        height: 200px;
+        text-align: justify;
+    }
+
+    label {
+        width: 250px;
+    }
+</style>

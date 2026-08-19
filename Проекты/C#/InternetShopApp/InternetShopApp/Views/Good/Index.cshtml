@@ -1,0 +1,93 @@
+﻿@model GoodViewModelList
+
+@{
+    ViewData["Title"] = "Товары";
+}
+
+<div center>
+    <h1>Товары</h1>
+
+    @if (Model.Items.Any())
+    {
+        <form method="get" align="center">
+            <div class="form-group" style="display:inline-block;">
+            <label>Название:</label>
+            <input style="width:200px;" name="name" value="@Model.FilterViewModel.Title" class="form-control" />
+            <input type="submit" value="Найти" class="btn btn-success" />
+            </div>
+        </form>
+    }
+
+    <br /><a asp-controller="Good" asp-action="Create" class="btn btn-success">Создать запись</a>
+</div>
+
+<br />
+<table center>
+    @if (Model.Items.Any())
+    {
+        <tr>
+            <th>Название</th>
+            <th style="width:900px;">Описание</th>
+            <th></th>
+        </tr>
+    }
+    @{
+        foreach (var good in Model.Items)
+        {
+            <tr>
+                <td>@good.Title</td>
+                <td style="width:900px;text-align:justify;">@good.Description</td>
+                <td>
+                    <a asp-controller="Good" asp-action="Update" asp-route-id="@good.Id" class="btn btn-outline-dark">Редактировать</a>
+                    <br /><br /><a class="btn btn-danger deleteButton" data-id="@good.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<br />
+<div class="buttons" center>
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+           asp-route-pageNumber="@(Model.PageViewModel.PageNumber - 1)"
+           class="btn  btn-outline-dark">
+            Назад
+        </a>
+    }
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+           asp-route-pageNumber="@(Model.PageViewModel.PageNumber + 1)"
+           class="btn btn-outline-dark">
+            Вперед
+        </a>
+    }
+</div>
+
+<style>
+    th {
+        background-color: deepskyblue;
+    }
+
+    td {
+        background-color: aliceblue;
+    }
+
+    th, td {
+        width: 400px;
+        border: 3px solid black;
+        text-align: center;
+    }
+
+    .form-control {
+        display: inline;
+    }
+
+    .form-group {
+        text-align: center;
+    }
+</style>
+
+<script src="~/js/good.js"></script>

@@ -1,0 +1,57 @@
+﻿@model RegisterForm
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<form asp-action="Register" asp-controller="Auth" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <label asp-for="Email">Email:</label>
+        <input type="text" asp-for="Email" value="@Model.Email" />
+        <span class="validation" asp-validation-for="Email"></span>
+    </div>
+    <br /><div class="form-group">
+        <label asp-for="Password">Пароль:</label>
+        <br /><textarea asp-for="Password">@Model.Password</textarea>
+        <span class="validation" asp-validation-for="Password"></span>
+    </div>
+    <br /><div class="form-group">
+        <label asp-for="ConfirmPassword">Повторите пароль:</label>
+        <br /><textarea asp-for="ConfirmPassword">@Model.ConfirmPassword</textarea>
+        <span class="validation" asp-validation-for="ConfirmPassword"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone">Номер телефона:</label>
+        <input type="text" asp-for="Phone" value="@Model.Phone" />
+        <span class="validation" asp-validation-for="Phone"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname">Фамилия:</label>
+        <input type="text" asp-for="Surname" value="@Model.Surname" />
+        <span class="validation" asp-validation-for="Surname"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name">Имя:</label>
+        <input type="text" asp-for="Surname" value="@Model.Name" />
+        <span class="validation" asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Patronymic">Отчество:</label>
+        <input type="text" asp-for="Patronymic" value="@Model.Patronymic" />
+        <span class="validation" asp-validation-for="Patronymic"></span>
+    </div>
+    <br /><input type="submit" class="btn btn-danger" value="Войти" />
+</form>
+
+<style>
+    textarea {
+        width: 450px;
+        height: 200px;
+        text-align: justify;
+    }
+
+    label {
+        width: 250px;
+    }
+</style>

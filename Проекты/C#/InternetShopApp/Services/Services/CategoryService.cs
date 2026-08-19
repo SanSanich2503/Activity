@@ -1,0 +1,102 @@
+﻿using Core;
+using Core.Entities.Categories;
+using Data.ViewModels;
+using Data.ViewModels.Categories;
+
+namespace Services.Services;
+
+public class CategoryService : BaseService
+{
+    private readonly CategoryRepository _categoryRepository;
+    
+    public CategoryService(DataContext context, CategoryRepository categoryRepository) : base(context)
+    {
+        _categoryRepository = categoryRepository;
+    }
+    
+    public CategoryForm BuildByForm(CategoryForm form) => new CategoryForm(form.Id, form.Title, form.Description);
+
+    public CategoryForm BuildFormById(int id)
+    {
+        var category = _categoryRepository.GetById(id);
+        if (category != null) return new CategoryForm(category.Id, category.Title, category.Description);
+
+        return new CategoryForm();
+    }
+
+    public CategoryForm BuildForm() => new CategoryForm();
+
+    public CategoryViewModelList BuildViewModelList(int pageNumber, int pageSize, string title)
+    {
+        var categorys = _categoryRepository.GetAll();
+        if (!string.IsNullOrWhiteSpace(title))
+            categorys = categorys
+                .Where(x => !string.IsNullOrWhiteSpace(x.Title) && x.Title.ToLower().Contains(title.ToLower()))
+                .ToList();
+
+        var count = categorys.Count;
+        var items = categorys.Skip((pageNumber - 1) * pageSize).Take(pageSize)
+            .OrderBy(x => x.Title)
+            .Select(x => new CategoryViewModelItem
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description
+            });
+
+        return new CategoryViewModelList
+        {
+            Items = items,
+            PageViewModel = new PageViewModel(count, pageNumber, pageSize),
+            FilterViewModel = new FilterViewModel(title),
+            Count = count
+        };
+    }
+
+    public void Create(CategoryForm form)
+    {
+        try
+        {
+            var category = new Category
+            {
+                Title = form.Title,
+                Description = form.Description,
+                LastModified = DateTime.Now
+            };
+            _categoryRepository.Add(category);
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public void Update(CategoryForm form)
+    {
+        try
+        {
+            var category = _categoryRepository.GetById(form.Id);
+            if (category != null)
+            {
+                category.Title = form.Title;
+                category.Description = form.Description;
+                category.LastModified = DateTime.Now;
+                _categoryRepository.Update(category);
+            }
+        }
+        catch (Exception e)
+        {
+        }
+    }
+    
+    public void Delete(int id)
+    {
+        try
+        {
+            var category = _categoryRepository.GetById(id);
+            if (category != null) _categoryRepository.Remove(category);
+        }
+        catch (Exception e)
+        {
+        }
+    }
+}

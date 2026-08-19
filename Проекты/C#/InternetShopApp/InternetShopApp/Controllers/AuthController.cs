@@ -1,0 +1,37 @@
+﻿using Data.ViewModels.Auth;
+using Microsoft.AspNetCore.Mvc;
+using Services.Services;
+
+namespace InternetShopApp.Controllers;
+
+public class AuthController : Controller
+{
+    private readonly AuthService _authService;
+    
+    public AuthController(AuthService authService)
+    {
+        _authService = authService;
+    }
+
+    [HttpGet]
+    public IActionResult Login() => View();
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Login(LoginForm model) 
+        =>_authService.Login(model, ModelState).Result ? RedirectToAction("Index", "Home") : View(model);
+    
+    [HttpGet]
+    public IActionResult Register() => View();
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Register(RegisterForm model) 
+        =>_authService.Register(model, ModelState).Result ? RedirectToAction("Index", "Home") : View(model);
+    
+    [HttpPost]
+    public IActionResult Logout() => _authService.Logout().Result;
+
+    [HttpGet]
+    public IActionResult AccessDenied() => Content("Доступ запрещен");
+}

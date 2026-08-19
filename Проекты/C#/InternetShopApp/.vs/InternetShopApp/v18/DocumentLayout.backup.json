@@ -1,0 +1,62 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\Activity\\\u041F\u0440\u043E\u0435\u043A\u0442\u044B\\C#\\InternetShopApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EA331360-BB36-4497-82C1-4699DF9D4EC3}|InternetShopApp\\InternetShopApp.csproj|c:\\users\\user\\desktop\\activity\\\u043F\u0440\u043E\u0435\u043A\u0442\u044B\\c#\\internetshopapp\\internetshopapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA331360-BB36-4497-82C1-4699DF9D4EC3}|InternetShopApp\\InternetShopApp.csproj|solutionrelative:internetshopapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA331360-BB36-4497-82C1-4699DF9D4EC3}|InternetShopApp\\InternetShopApp.csproj|c:\\users\\user\\desktop\\activity\\\u043F\u0440\u043E\u0435\u043A\u0442\u044B\\c#\\internetshopapp\\internetshopapp\\internetshopapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EA331360-BB36-4497-82C1-4699DF9D4EC3}|InternetShopApp\\InternetShopApp.csproj|solutionrelative:internetshopapp\\internetshopapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{c6f34f0d-7ae5-4f3a-be61-fe0c21ae9eb8}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Activity\\\u041F\u0440\u043E\u0435\u043A\u0442\u044B\\C#\\InternetShopApp\\InternetShopApp\\Program.cs",
+              "RelativeDocumentMoniker": "InternetShopApp\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Activity\\\u041F\u0440\u043E\u0435\u043A\u0442\u044B\\C#\\InternetShopApp\\InternetShopApp\\Program.cs*",
+              "RelativeToolTip": "InternetShopApp\\Program.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-15T16:11:03.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InternetShopApp",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Activity\\\u041F\u0440\u043E\u0435\u043A\u0442\u044B\\C#\\InternetShopApp\\InternetShopApp\\InternetShopApp.csproj",
+              "RelativeDocumentMoniker": "InternetShopApp\\InternetShopApp.csproj",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Activity\\\u041F\u0440\u043E\u0435\u043A\u0442\u044B\\C#\\InternetShopApp\\InternetShopApp\\InternetShopApp.csproj",
+              "RelativeToolTip": "InternetShopApp\\InternetShopApp.csproj",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAQwBUAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-15T16:07:42.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+﻿@model CartViewModelList
+
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<table center>
+    @if (Model.Items.Any())
+    {
+        <tr>
+            <th>Название</th>
+            <th style="width:900px;">Описание</th>
+            <th></th>
+        </tr>
+    }
+    @{
+        foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td style="width:900px;text-align:justify;">@item.Description</td>
+                <td>
+                    <br /><br /><a class="btn btn-danger cancelButton" data-id="@item.Id">Отменить</a>
+                    <br /><br /><a class="btn btn-danger returnButton" data-id="@item.Id">Вернуть</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<br />
+<div class="buttons" center>
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+           asp-route-pageNumber="@(Model.PageViewModel.PageNumber - 1)"
+           class="btn  btn-outline-dark">
+            Назад
+        </a>
+    }
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+           asp-route-pageNumber="@(Model.PageViewModel.PageNumber + 1)"
+           class="btn btn-outline-dark">
+            Вперед
+        </a>
+    }
+</div>
+
+<style>
+    th {
+        background-color: deepskyblue;
+    }
+
+    td {
+        background-color: aliceblue;
+    }
+
+    th, td {
+        width: 400px;
+        border: 3px solid black;
+        text-align: center;
+    }
+</style>
+
+<script src="~/js/order.js"></script>

@@ -1,0 +1,10 @@
+﻿using Scrutor.AspNetCore;
+
+namespace Data.ViewModels;
+
+public abstract class ViewModelItem
+{
+    public int Id { get; set; }
+    public string? Title { get; set; }
+    public string? Description { get; set; }
+}
