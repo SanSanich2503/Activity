@@ -14,7 +14,8 @@ public class CartsController : Controller
         _purchaseService = purchaseService;
     }
     
-    public IActionResult Index() => View();
+    public IActionResult Index(int pageNumber = 1, int pageSize = 10)
+        => View(_purchaseService.GetCart(pageNumber, pageSize));
     
     public IActionResult Delete(int id)
     {

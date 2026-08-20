@@ -1,7 +1,10 @@
 ﻿@model GoodViewModelList
+@inject AuthService AuthService
 
 @{
     ViewData["Title"] = "Товары";
+
+    var isAdmin = AuthService.IsAdmin();
 }
 
 <div center>
@@ -11,9 +14,9 @@
     {
         <form method="get" align="center">
             <div class="form-group" style="display:inline-block;">
-            <label>Название:</label>
-            <input style="width:200px;" name="name" value="@Model.FilterViewModel.Title" class="form-control" />
-            <input type="submit" value="Найти" class="btn btn-success" />
+                <label>Название:</label>
+                <input style="width:200px;" name="name" value="@Model.FilterViewModel.Title" class="form-control" />
+                <input type="submit" value="Найти" class="btn btn-success" />
             </div>
         </form>
     }
@@ -28,6 +31,9 @@
         <tr>
             <th>Название</th>
             <th style="width:500px;">Описание</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Сколько дней доставляется</th>
             <th></th>
         </tr>
     }
@@ -37,9 +43,19 @@
             <tr>
                 <td>@good.Title</td>
                 <td style="width:500px;text-align:justify;">@good.Description</td>
+                <td>@good.Price</td>
+                <td>@good.Count</td>
+                <td>@good.DeliveryDays</td>
                 <td>
-                    <a asp-controller="Goods" asp-action="Update" asp-route-id="@good.Id" class="btn btn-outline-dark">Редактировать</a>
-                    <br /><br /><a class="btn btn-danger deleteButton" data-id="@good.Id">Удалить</a>
+                    @if (isAdmin)
+                    {
+                        <a asp-controller="Goods" asp-action="Update" asp-route-id="@good.Id" class="btn btn-outline-dark">Редактировать</a>
+                        <br/> <br/> <a class="btn btn-danger deleteButton" data-id="@good.Id">Удалить</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger addToCartButton" data-id="@good.Id">В корзину</a>
+                    }
                 </td>
             </tr>
         }
@@ -76,7 +92,7 @@
     }
 
     th, td {
-        width: 400px;
+        width: 300px;
         border: 3px solid black;
         text-align: center;
     }
@@ -90,4 +106,4 @@
     }
 </style>
 
-<script src="~/js/good.js"></script>
+<script src="~/js/goods.js"></script>

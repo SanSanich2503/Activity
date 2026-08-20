@@ -1,7 +1,11 @@
-﻿@model CartViewModelList
+﻿@using Data.Enums.PurchaseStatuses
+@model OrderViewModelList
+@inject AuthService AuthService
 
 @{
-    ViewData["Title"] = "Корзина";
+    ViewData["Title"] = "Заказы";
+
+    var isAdmin = AuthService.IsAdmin();
 }
 
 <table center>
@@ -10,6 +14,9 @@
         <tr>
             <th>Название</th>
             <th style="width:500px;">Описание</th>
+            <th>Цена</th>
+            <th>Дата покупки</th>
+            <th>Дата доставки</th>
             <th></th>
         </tr>
     }
@@ -19,9 +26,22 @@
             <tr>
                 <td>@item.Title</td>
                 <td style="width:500px;text-align:justify;">@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.PurchaseDate</td>
+                <td>@item.DeliveryDate</td>
                 <td>
-                    <br /><br /><a class="btn btn-danger cancelButton" data-id="@item.Id">Отменить</a>
-                    <br /><br /><a class="btn btn-danger returnButton" data-id="@item.Id">Вернуть</a>
+                    @if (item.StatusEnum == PurchaseStatusEnum.Delivery)
+                    {
+                        <br/> <br/> <a class="btn btn-danger cancelButton" data-id="@item.Id">Отменить</a>
+                    }
+                    @if (item.StatusEnum == PurchaseStatusEnum.Completed)
+                    {
+                        <br/> <br/> <a class="btn btn-danger returnButton" data-id="@item.Id">Вернуть</a>
+                    }
+                    @if (isAdmin)
+                    {
+                        <br/> <br/> <a class="btn btn-danger deleteButton" data-id="@item.Id">Удалить</a>
+                    }
                 </td>
             </tr>
         }
@@ -58,10 +78,10 @@
     }
 
     th, td {
-        width: 400px;
+        width: 300px;
         border: 3px solid black;
         text-align: center;
     }
 </style>
 
-<script src="~/js/order.js"></script>
+<script src="~/js/orders.js"></script>

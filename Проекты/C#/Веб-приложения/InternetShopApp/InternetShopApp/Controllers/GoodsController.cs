@@ -72,4 +72,11 @@ public class GoodsController : Controller
 
         return Content("OK");
     }
+
+    public IActionResult AddToCart(int id)
+    {
+        _goodService.AddToCart(id);
+        
+        return Content("OK");
+    }
 }

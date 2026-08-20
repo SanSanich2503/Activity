@@ -10,6 +10,8 @@
         <tr>
             <th>Название</th>
             <th style="width:500px;">Описание</th>
+            <th>Цена</th>
+            <th>Сколько дней доставляется</th>
             <th></th>
         </tr>
     }
@@ -19,6 +21,8 @@
             <tr>
                 <td>@item.Title</td>
                 <td style="width:500px;text-align:justify;">@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.DeliveryDays</td>
                 <td>
                     <br /><br /><a class="btn btn-danger deleteButton" data-id="@item.Id">Удалить</a>
                 </td>
@@ -57,10 +61,10 @@
     }
 
     th, td {
-        width: 400px;
+        width: 300px;
         border: 3px solid black;
         text-align: center;
     }
 </style>
 
-<script src="~/js/cart.js"></script>
+<script src="~/js/carts.js"></script>

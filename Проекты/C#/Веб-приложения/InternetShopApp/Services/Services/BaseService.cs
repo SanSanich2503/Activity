@@ -5,7 +5,7 @@ namespace Services.Services;
 
 public class BaseService : ISelfTransientLifetime
 {
-    private readonly DataContext _context;
+    protected readonly DataContext _context;
     
     public BaseService(DataContext context)
     {

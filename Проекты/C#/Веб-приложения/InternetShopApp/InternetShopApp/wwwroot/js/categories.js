@@ -2,9 +2,8 @@ let deleteButton = document.getElementById('deleteButton');
 deleteButton.onclick = function () {
     if (confirm("Вы действительно хотите удалить выбранный элемент?")) {
         let id = $(this).data('id');
-
         if (id) {
-            $.post("/Good/Delete", { id: id }, function (data) {
+            $.post("/Category/Delete", { id: id }, function (data) {
                 if (data === "OK") {
                     alert("Данные успешно удалены");
                     location.reload();

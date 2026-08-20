@@ -1,7 +1,10 @@
 ﻿@model CategoryViewModelList
+@inject AuthService AuthService
 
 @{
     ViewData["Title"] = "Категории товаров";
+
+    var isAdmin = AuthService.IsAdmin();
 }
 
 <div center>
@@ -11,9 +14,9 @@
     {
         <form method="get" align="center">
             <div class="form-group" style="display:inline-block;">
-            <label>Название:</label>
-            <input style="width:200px;" name="name" value="@Model.FilterViewModel.Title" class="form-control" />
-            <input type="submit" value="Найти" class="btn btn-success" />
+                <label>Название:</label>
+                <input style="width:200px;" name="name" value="@Model.FilterViewModel.Title" class="form-control" />
+                <input type="submit" value="Найти" class="btn btn-success" />
             </div>
         </form>
     }
@@ -28,7 +31,10 @@
         <tr>
             <th>Название</th>
             <th style="width:500px;">Описание</th>
-            <th></th>
+            @if (isAdmin)
+            {
+                <th></th>
+            }
         </tr>
     }
     @{
@@ -37,10 +43,13 @@
             <tr>
                 <td>@category.Title</td>
                 <td style="width:500px;text-align:justify;">@category.Description</td>
-                <td>
-                    <a asp-controller="Categories" asp-action="Update" asp-route-id="@category.Id" class="btn btn-outline-dark">Редактировать</a>
-                    <br /><br /><a class="btn btn-danger deleteButton" data-id="@category.Id">Удалить</a>
-                </td>
+                @if (isAdmin)
+                {
+                    <td>
+                        <a asp-controller="Categories" asp-action="Update" asp-route-id="@category.Id" class="btn btn-outline-dark">Редактировать</a>
+                        <br/><br/><a class="btn btn-danger deleteButton" data-id="@category.Id">Удалить</a>
+                    </td>
+                }
             </tr>
         }
     }
@@ -90,4 +99,4 @@
     }
 </style>
 
-<script src="~/js/category.js"></script>
+<script src="~/js/categories.js"></script>

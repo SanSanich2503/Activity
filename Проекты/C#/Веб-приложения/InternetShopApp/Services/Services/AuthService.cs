@@ -126,6 +126,14 @@ public class AuthService : BaseService
         return new RedirectToActionResult("Login", "Auth", null);
     }
 
+    public bool IsAdmin()
+    {
+        var userGuid = _httpContext.User.Identity?.Name ?? "";
+        var user = _userRepository.GetCurrentUser(userGuid);
+        
+        return user?.Role.Title?.ToLower() == "админ";
+    }
+
     private async Task Authenticate(User user)
     {
         var claims = new List<Claim>

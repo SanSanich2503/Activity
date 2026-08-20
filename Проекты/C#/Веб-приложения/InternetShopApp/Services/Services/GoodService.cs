@@ -1,8 +1,12 @@
 ﻿using Core;
 using Core.Entities.Goods;
 using Core.Entities.Purchases;
+using Core.Entities.PurchaseStatuses;
+using Core.Entities.Users;
+using Data.Enums.PurchaseStatuses;
 using Data.ViewModels;
 using Data.ViewModels.Goods;
+using Microsoft.AspNetCore.Http;
 
 namespace Services.Services;
 
@@ -10,11 +14,18 @@ public class GoodService : BaseService
 {
     private readonly GoodRepository _goodRepository;
     private readonly PurchaseRepository _purchaseRepository;
+    private readonly PurchaseStatusRepository _purchaseStatusRepository;
+    private readonly User? _user;
     
-    public GoodService(DataContext context, GoodRepository goodRepository, PurchaseRepository purchaseRepository) : base(context)
+    public GoodService(DataContext context, GoodRepository goodRepository, IHttpContextAccessor contextAccessor,
+        PurchaseRepository purchaseRepository, PurchaseStatusRepository purchaseStatusRepository, UserRepository userRepository) : base(context)
     {
         _goodRepository = goodRepository;
         _purchaseRepository = purchaseRepository;
+        _purchaseStatusRepository = purchaseStatusRepository;
+        
+        var userGuid = contextAccessor.HttpContext?.User.Identity?.Name ?? "";
+        _user = userRepository.GetCurrentUser(userGuid);
     }
     
     public GoodForm BuildByForm(GoodForm form) => new GoodForm(form.Id, form.Title, form.Description);
@@ -113,8 +124,40 @@ public class GoodService : BaseService
             {
                 _goodRepository.Remove(good);
                 
-                var purchases = _purchaseRepository.GetPurchasesByUserId(id);
+                var purchases = _purchaseRepository.GetPurchasesByGoodId(id);
                 if (purchases.Any()) _purchaseRepository.RemoveRange(purchases);
+            }
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public void AddToCart(int id)
+    {
+        try
+        {
+            if (_user != null)
+            {
+                var good = _goodRepository.GetById(id);
+                if (good is { Count: > 0 })
+                {
+                    good.Count--;
+                    _context.SaveChanges();
+                    
+                    var purchaseStatus = _purchaseStatusRepository.GetByEnumId(PurchaseStatusEnum.Cart);
+                    if (purchaseStatus != null)
+                    {
+                        var purchase = new Purchase
+                        {
+                            UserId = _user.Id,
+                            GoodId = id,
+                            PurchaseStatusId = purchaseStatus.Id
+                        };
+
+                        _purchaseRepository.Add(purchase);
+                    }
+                }
             }
         }
         catch (Exception e)

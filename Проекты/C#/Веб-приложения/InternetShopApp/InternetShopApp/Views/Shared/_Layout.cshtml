@@ -3,7 +3,7 @@
 @{
     var userGuid = Context.User.Identity?.Name ?? "";
     var user = UserRepository.GetCurrentUser(userGuid);
-    var role = user?.Role.Title?.ToLower() ?? "";
+    var isAdmin = user?.Role.Title?.ToLower() == "админ";
 }
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Заказы</a>
                         </li>
-                        if (role == "админ")
+                        if (isAdmin)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Категории</a>
