@@ -1,35 +1,37 @@
-﻿using Data.ViewModels.Categories;
+﻿using Data.ViewModels.Goods;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Services;
 
 namespace InternetShopApp.Controllers;
 
-public class CategoryController : Controller
+[Authorize(Roles = "Админ, Покупатель")]
+public class GoodsController : Controller
 {
-    private readonly CategoryService _categoryService;
+    private readonly GoodService _goodService;
     
-    public CategoryController(CategoryService categoryService)
+    public GoodsController(GoodService goodService)
     {
-        _categoryService = categoryService;
+        _goodService = goodService;
     }
     
     public IActionResult Index(int pageNumber = 1, int pageSize = 10, string name = "")
-        => View(_categoryService.BuildViewModelList(pageNumber, pageSize, name));
+        => View(_goodService.BuildViewModelList(pageNumber, pageSize, name));
 
     public IActionResult Create()
     {
         ViewBag.ActionName = "Создание";
         ViewBag.MethodName = "Create";
 
-        return View("CreateUpdate", _categoryService.BuildForm());
+        return View("CreateUpdate", _goodService.BuildForm());
     }
 
     [HttpPost]
-    public IActionResult Create(CategoryForm form)
+    public IActionResult Create(GoodForm form)
     {
         if (ModelState.IsValid)
         {
-            _categoryService.Create(form);
+            _goodService.Create(form);
 
             return RedirectToAction("Index");
         }
@@ -37,7 +39,7 @@ public class CategoryController : Controller
         ViewBag.ActionName = "Создание";
         ViewBag.MethodName = "Create";
 
-        return View("CreateUpdate", _categoryService.BuildByForm(form));
+        return View("CreateUpdate", _goodService.BuildByForm(form));
     }
 
     public IActionResult Update(int id)
@@ -45,15 +47,15 @@ public class CategoryController : Controller
         ViewBag.ActionName = "Редактирование";
         ViewBag.MethodName = "Update";
 
-        return View("CreateUpdate", _categoryService.BuildFormById(id));
+        return View("CreateUpdate", _goodService.BuildFormById(id));
     }
 
     [HttpPost]
-    public IActionResult Update(CategoryForm form)
+    public IActionResult Update(GoodForm form)
     {
         if (ModelState.IsValid)
         {
-            _categoryService.Update(form);
+            _goodService.Update(form);
 
             return RedirectToAction("Index");
         }
@@ -61,12 +63,12 @@ public class CategoryController : Controller
         ViewBag.ActionName = "Редактирование";
         ViewBag.MethodName = "Update";
 
-        return View("CreateUpdate", _categoryService.BuildByForm(form));
+        return View("CreateUpdate", _goodService.BuildByForm(form));
     }
 
     public IActionResult Delete(int id)
     {
-        _categoryService.Delete(id);
+        _goodService.Delete(id);
 
         return Content("OK");
     }

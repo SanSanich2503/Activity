@@ -28,14 +28,15 @@ public class CategoryService : BaseService
 
     public CategoryViewModelList BuildViewModelList(int pageNumber, int pageSize, string title)
     {
-        var categorys = _categoryRepository.GetAll();
+        
+        var categories = _categoryRepository.GetAll();
         if (!string.IsNullOrWhiteSpace(title))
-            categorys = categorys
+            categories = categories
                 .Where(x => !string.IsNullOrWhiteSpace(x.Title) && x.Title.ToLower().Contains(title.ToLower()))
                 .ToList();
 
-        var count = categorys.Count;
-        var items = categorys.Skip((pageNumber - 1) * pageSize).Take(pageSize)
+        var count = categories.Count;
+        var items = categories.Skip((pageNumber - 1) * pageSize).Take(pageSize)
             .OrderBy(x => x.Title)
             .Select(x => new CategoryViewModelItem
             {

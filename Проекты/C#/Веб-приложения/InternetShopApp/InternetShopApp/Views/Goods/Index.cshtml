@@ -1,11 +1,11 @@
-﻿@model CategoryViewModelList
+﻿@model GoodViewModelList
 
 @{
-    ViewData["Title"] = "Категории товаров";
+    ViewData["Title"] = "Товары";
 }
 
 <div center>
-    <h1>Категории товаров</h1>
+    <h1>Товары</h1>
 
     @if (Model.Items.Any())
     {
@@ -18,7 +18,7 @@
         </form>
     }
 
-    <br /><a asp-controller="Category" asp-action="Create" class="btn btn-success">Создать запись</a>
+    <br /><a asp-controller="Goods" asp-action="Create" class="btn btn-success">Создать запись</a>
 </div>
 
 <br />
@@ -27,19 +27,19 @@
     {
         <tr>
             <th>Название</th>
-            <th style="width:900px;">Описание</th>
+            <th style="width:500px;">Описание</th>
             <th></th>
         </tr>
     }
     @{
-        foreach (var category in Model.Items)
+        foreach (var good in Model.Items)
         {
             <tr>
-                <td>@category.Title</td>
-                <td style="width:900px;text-align:justify;">@category.Description</td>
+                <td>@good.Title</td>
+                <td style="width:500px;text-align:justify;">@good.Description</td>
                 <td>
-                    <a asp-controller="Category" asp-action="Update" asp-route-id="@category.Id" class="btn btn-outline-dark">Редактировать</a>
-                    <br /><br /><a class="btn btn-danger deleteButton" data-id="@category.Id">Удалить</a>
+                    <a asp-controller="Goods" asp-action="Update" asp-route-id="@good.Id" class="btn btn-outline-dark">Редактировать</a>
+                    <br /><br /><a class="btn btn-danger deleteButton" data-id="@good.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -90,4 +90,4 @@
     }
 </style>
 
-<script src="~/js/category.js"></script>
+<script src="~/js/good.js"></script>

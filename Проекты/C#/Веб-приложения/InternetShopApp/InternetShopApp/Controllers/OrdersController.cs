@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services.Services;
 
 namespace InternetShopApp.Controllers;
 
-public class OrderController : Controller
+[Authorize(Roles = "Админ, Покупатель")]
+public class OrdersController : Controller
 {
     private readonly PurchaseService _purchaseService;
     
-    public OrderController(PurchaseService purchaseService)
+    public OrdersController(PurchaseService purchaseService)
     {
         _purchaseService = purchaseService;
     }

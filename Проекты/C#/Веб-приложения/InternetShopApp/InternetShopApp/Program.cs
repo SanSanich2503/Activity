@@ -10,6 +10,7 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 var services  = builder.Services;
 
+services.AddHttpContextAccessor();
 services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 services.AddAdvancedDependencyInjection();
 services.Scan(scan => scan
@@ -27,7 +28,6 @@ services.Scan(scan => scan
     .AsImplementedInterfaces()
     .WithTransientLifetime());
 
-services.AddHttpContextAccessor();
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -53,6 +53,8 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<DataContext>();
     context.Database.Migrate();
+    
+    DbInitializer.Initialize(context);
 }
 
 app.Run();

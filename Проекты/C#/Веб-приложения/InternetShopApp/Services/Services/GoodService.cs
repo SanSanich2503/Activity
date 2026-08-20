@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.Entities.Goods;
+using Core.Entities.Purchases;
 using Data.ViewModels;
 using Data.ViewModels.Goods;
 
@@ -8,10 +9,12 @@ namespace Services.Services;
 public class GoodService : BaseService
 {
     private readonly GoodRepository _goodRepository;
+    private readonly PurchaseRepository _purchaseRepository;
     
-    public GoodService(DataContext context, GoodRepository goodRepository) : base(context)
+    public GoodService(DataContext context, GoodRepository goodRepository, PurchaseRepository purchaseRepository) : base(context)
     {
         _goodRepository = goodRepository;
+        _purchaseRepository = purchaseRepository;
     }
     
     public GoodForm BuildByForm(GoodForm form) => new GoodForm(form.Id, form.Title, form.Description);
@@ -68,6 +71,9 @@ public class GoodService : BaseService
             {
                 Title = form.Title,
                 Description = form.Description,
+                Price = form.Price,
+                Count = form.Count,
+                DeliveryDays =  form.DeliveryDays,
                 LastModified =  DateTime.Now
             };
             _goodRepository.Add(good);
@@ -86,6 +92,9 @@ public class GoodService : BaseService
             {
                 good.Title = form.Title;
                 good.Description = form.Description;
+                good.Price = form.Price;
+                good.Count = form.Count;
+                good.DeliveryDays = form.DeliveryDays;
                 good.LastModified = DateTime.Now;
                 _goodRepository.Update(good);
             }
@@ -100,7 +109,13 @@ public class GoodService : BaseService
         try
         {
             var good = _goodRepository.GetById(id);
-            if (good != null) _goodRepository.Remove(good);
+            if (good != null)
+            {
+                _goodRepository.Remove(good);
+                
+                var purchases = _purchaseRepository.GetPurchasesByUserId(id);
+                if (purchases.Any()) _purchaseRepository.RemoveRange(purchases);
+            }
         }
         catch (Exception e)
         {

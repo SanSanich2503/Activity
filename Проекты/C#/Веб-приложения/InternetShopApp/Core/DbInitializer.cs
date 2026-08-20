@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using System.Text;
 using Core.Entities.Categories;
 using Core.Entities.Goods;
 using Core.Entities.GoodToCategories;
@@ -6,11 +7,10 @@ using Core.Entities.PurchaseStatuses;
 using Core.Entities.Roles;
 using Core.Entities.Users;
 using Data.Enums.PurchaseStatuses;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Core;
 
-public class DbInitializer
+public static class DbInitializer
 {
     public static void Initialize(DataContext context)
     {
@@ -23,14 +23,14 @@ public class DbInitializer
                 new Role
                 {
                     Title = "Админ",
-                    Description = "Роль администратора",
-                    LastModified =  creationDate
+                    Description = "Роль администратора.",
+                    LastModified = creationDate
                 },
                 new Role
                 {
                     Title = "Покупатель",
-                    Description = "Роль покупателя",
-                    LastModified =  creationDate
+                    Description = "Роль покупателя.",
+                    LastModified = creationDate
                 }
             });
             context.SaveChanges();
@@ -45,7 +45,7 @@ public class DbInitializer
                 {
                     UserGuid = Guid.NewGuid().ToString(),
                     Title = "Главный админ",
-                    Description = "Главный админ системы",
+                    Description = "Главный админ системы.",
                     Email = "admin@admin.com",
                     Password = HashPassword("123"),
                     RoleId = adminRole.Id,
@@ -62,13 +62,13 @@ public class DbInitializer
                 new Category
                 {
                     Title = "Обувь",
-                    Description = "Категория обуви",
+                    Description = "Категория обуви.",
                     LastModified = creationDate
                 },
                 new Category
                 {
                     Title = "Одежда",
-                    Description = "Категория одежды",
+                    Description = "Категория одежды.",
                     LastModified = creationDate
                 }
             });
@@ -133,35 +133,35 @@ public class DbInitializer
                 new PurchaseStatus
                 {
                     Title = "Корзина",
-                    Description = "Статус 'Корзина'",
+                    Description = "Статус 'Корзина'.",
                     PurchaseStatusEnum = PurchaseStatusEnum.Cart,
                     LastModified = creationDate
                 },
                 new PurchaseStatus
                 {
                     Title = "Доставка",
-                    Description = "Статус 'Доставка'",
+                    Description = "Статус 'Доставка'.",
                     PurchaseStatusEnum = PurchaseStatusEnum.Delivery,
                     LastModified = creationDate
                 },
                 new PurchaseStatus
                 {
                     Title = "Завершен",
-                    Description = "Статус 'Завершен'",
+                    Description = "Статус 'Завершен'.",
                     PurchaseStatusEnum = PurchaseStatusEnum.Completed,
                     LastModified = creationDate
                 },
                 new PurchaseStatus
                 {
                     Title = "Отменен",
-                    Description = "Статус 'Отменен'",
+                    Description = "Статус 'Отменен'.",
                     PurchaseStatusEnum = PurchaseStatusEnum.Cancelled,
                     LastModified = creationDate
                 },
                 new PurchaseStatus
                 {
                     Title = "Возврат",
-                    Description = "Статус 'Возврат'",
+                    Description = "Статус 'Возврат'.",
                     PurchaseStatusEnum = PurchaseStatusEnum.Returned,
                     LastModified = creationDate
                 }
@@ -170,11 +170,11 @@ public class DbInitializer
         }
     }
     
-    private static string HashPassword(string? password)
-        => Convert.ToBase64String(KeyDerivation.Pbkdf2(
-            password: password!,
-            salt: RandomNumberGenerator.GetBytes(128 / 8),
-            prf: KeyDerivationPrf.HMACSHA256,
-            iterationCount: 100000,
-            numBytesRequested: 256 / 8));
+    public static string HashPassword(string password)
+    {
+        using var sha256 = SHA256.Create();
+        var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            
+        return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+    }
 }

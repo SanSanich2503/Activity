@@ -39,32 +39,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Cart/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
+[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Carts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Category/CreateUpdate.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlVXBkYXRlLmNzaHRtbA==
+[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Categories/CreateUpdate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDcmVhdGVVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Category/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Categories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Good/CreateUpdate.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29vZFxDcmVhdGVVcGRhdGUuY3NodG1s
+[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Goods/CreateUpdate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29vZHNcQ3JlYXRlVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Good/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29vZFxJbmRleC5jc2h0bWw=
+[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Goods/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR29vZHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Order/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcSW5kZXguY3NodG1s
+[C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Orders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/user/Desktop/Activity/Проекты/C\#/Веб-приложения/InternetShopApp/InternetShopApp/Views/Shared/_ValidationScriptsPartial.cshtml]

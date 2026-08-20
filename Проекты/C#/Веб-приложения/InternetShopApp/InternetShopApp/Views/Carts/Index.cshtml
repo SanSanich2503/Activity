@@ -9,7 +9,7 @@
     {
         <tr>
             <th>Название</th>
-            <th style="width:900px;">Описание</th>
+            <th style="width:500px;">Описание</th>
             <th></th>
         </tr>
     }
@@ -18,10 +18,9 @@
         {
             <tr>
                 <td>@item.Title</td>
-                <td style="width:900px;text-align:justify;">@item.Description</td>
+                <td style="width:500px;text-align:justify;">@item.Description</td>
                 <td>
-                    <br /><br /><a class="btn btn-danger cancelButton" data-id="@item.Id">Отменить</a>
-                    <br /><br /><a class="btn btn-danger returnButton" data-id="@item.Id">Вернуть</a>
+                    <br /><br /><a class="btn btn-danger deleteButton" data-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -64,4 +63,4 @@
     }
 </style>
 
-<script src="~/js/order.js"></script>
+<script src="~/js/cart.js"></script>

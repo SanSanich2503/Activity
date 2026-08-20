@@ -4,7 +4,7 @@ namespace Core.Entities;
 
 public class BaseRepository<T> : ISelfTransientLifetime where T : Entity
 {
-    protected DataContext _context;
+    protected readonly DataContext _context;
     
     protected BaseRepository(DataContext context)
     {

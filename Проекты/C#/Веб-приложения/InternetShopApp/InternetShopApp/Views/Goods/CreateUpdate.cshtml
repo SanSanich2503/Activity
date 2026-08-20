@@ -4,7 +4,7 @@
     ViewData["Title"] = $"{ViewBag.ActionName} записи";
 }
 
-<form asp-controller="Good" asp-action="@ViewBag.MethodName" method="post">
+<form asp-controller="Goods" asp-action="@ViewBag.MethodName" method="post">
     <div class="validation" asp-validation-summary="ModelOnly"></div>
     <div class="form-group">
         <input type="hidden" asp-for="Id" value="@Model.Id" />
