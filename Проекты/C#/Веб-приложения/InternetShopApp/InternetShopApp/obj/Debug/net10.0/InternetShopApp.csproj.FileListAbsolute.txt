@@ -397,7 +397,7 @@ C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\Int
 C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\InternetShopApp.pdb
 C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\InternetShopApp.genruntimeconfig.cache
 C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\ref\InternetShopApp.dll
-C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\compressed\ympbsxh5t4-{0}-toivxbrlqu-toivxbrlqu.gz
-C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\compressed\8dbnsr5qju-{0}-qzv0skcbf9-qzv0skcbf9.gz
-C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\compressed\fkfuch6ovz-{0}-ydl2sg0xza-ydl2sg0xza.gz
-C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\compressed\q1huqxapng-{0}-pdcqpgz6f3-pdcqpgz6f3.gz
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\compressed\ympbsxh5t4-{0}-hbgl60uwz5-hbgl60uwz5.gz
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\compressed\8dbnsr5qju-{0}-4oj7f0bvy0-4oj7f0bvy0.gz
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\compressed\fkfuch6ovz-{0}-633vwz0d68-633vwz0d68.gz
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\InternetShopApp\obj\Debug\net10.0\compressed\q1huqxapng-{0}-ye9ao7lxvt-ye9ao7lxvt.gz

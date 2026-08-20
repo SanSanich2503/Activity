@@ -4,7 +4,7 @@ deleteButton.onclick = function () {
         let id = $(this).data('id');
 
         if (id) {
-            $.post("/Cart/Delete", { id: id }, function (data) {
+            $.post("/Carts/Delete", { id: id }, function (data) {
                 if (data === "OK") {
                     alert("Данные успешно удалены");
                     location.reload();
