@@ -57,7 +57,10 @@ public class GoodService : BaseService
                 {
                     Id = x.Id,
                     Title = x.Title,
-                    Description = x.Description
+                    Description = x.Description,
+                    Price = x.Price,
+                    Count = x.Count,
+                    DeliveryDays = x.DeliveryDays
                 });
 
             return new GoodViewModelList

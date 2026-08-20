@@ -32,15 +32,15 @@
                 <td>
                     @if (item.StatusEnum == PurchaseStatusEnum.Delivery)
                     {
-                        <br/> <br/> <a class="btn btn-danger cancelButton" data-id="@item.Id">Отменить</a>
+                        <br/> <br/> <a class="btn btn-danger" id="cancelButton" data-id="@item.Id">Отменить</a>
                     }
                     @if (item.StatusEnum == PurchaseStatusEnum.Completed)
                     {
-                        <br/> <br/> <a class="btn btn-danger returnButton" data-id="@item.Id">Вернуть</a>
+                        <br/> <br/> <a class="btn btn-danger" id="returnButton" data-id="@item.Id">Вернуть</a>
                     }
                     @if (isAdmin)
                     {
-                        <br/> <br/> <a class="btn btn-danger deleteButton" data-id="@item.Id">Удалить</a>
+                        <br/> <br/> <a class="btn btn-danger" id="deleteButton" data-id="@item.Id">Удалить</a>
                     }
                 </td>
             </tr>
@@ -84,4 +84,4 @@
     }
 </style>
 
-<script src="~/js/orders.js"></script>
+<script type="text/javascript" src="~/js/orders.js"></script>

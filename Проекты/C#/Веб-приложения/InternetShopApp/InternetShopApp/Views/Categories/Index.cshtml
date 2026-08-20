@@ -21,7 +21,10 @@
         </form>
     }
 
-    <br /><a asp-controller="Categories" asp-action="Create" class="btn btn-success">Создать запись</a>
+    @if (isAdmin)
+    {
+        <br/> <a asp-controller="Categories" asp-action="Create" class="btn btn-success">Создать запись</a>
+    }
 </div>
 
 <br />
@@ -47,7 +50,7 @@
                 {
                     <td>
                         <a asp-controller="Categories" asp-action="Update" asp-route-id="@category.Id" class="btn btn-outline-dark">Редактировать</a>
-                        <br/><br/><a class="btn btn-danger deleteButton" data-id="@category.Id">Удалить</a>
+                        <br/><br/><a class="btn btn-danger" id="deleteButton" data-id="@category.Id">Удалить</a>
                     </td>
                 }
             </tr>
@@ -99,4 +102,4 @@
     }
 </style>
 
-<script src="~/js/categories.js"></script>
+<script type="text/javascript" src="~/js/categories.js"></script>
