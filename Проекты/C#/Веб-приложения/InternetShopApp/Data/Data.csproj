@@ -16,7 +16,9 @@
       </PackageReference>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
+      <PackageReference Include="RabbitMQ.Client" Version="7.2.2" />
       <PackageReference Include="Scrutor.AspNetCore" Version="3.3.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
     </ItemGroup>
 
 </Project>

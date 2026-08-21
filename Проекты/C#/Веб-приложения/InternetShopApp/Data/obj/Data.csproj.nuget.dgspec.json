@@ -77,9 +77,17 @@
               "target": "Package",
               "version": "[10.0.3, )"
             },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            },
             "Scrutor.AspNetCore": {
               "target": "Package",
               "version": "[3.3.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.2.3, )"
             }
           },
           "imports": [
