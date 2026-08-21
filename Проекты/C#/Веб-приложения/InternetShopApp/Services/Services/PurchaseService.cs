@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Entities.Goods;
 using Core.Entities.Purchases;
 using Core.Entities.PurchaseStatuses;
 using Core.Entities.Users;
@@ -15,12 +16,14 @@ public class PurchaseService : BaseService
     private readonly User? _user;
     private readonly PurchaseRepository _purchaseRepository;
     private readonly PurchaseStatusRepository _purchaseStatusRepository;
+    private readonly GoodRepository _goodRepository;
 
     public PurchaseService(DataContext context, IHttpContextAccessor contextAccessor, PurchaseRepository purchaseRepository,
-        PurchaseStatusRepository purchaseStatusRepository, UserRepository userRepository) : base(context)
+        PurchaseStatusRepository purchaseStatusRepository, GoodRepository goodRepository, UserRepository userRepository) : base(context)
     {
         _purchaseRepository = purchaseRepository;
         _purchaseStatusRepository = purchaseStatusRepository;
+        _goodRepository = goodRepository;
         
         var userGuid = contextAccessor.HttpContext?.User.Identity?.Name ?? "";
         _user = userRepository.GetCurrentUser(userGuid);
@@ -112,7 +115,17 @@ public class PurchaseService : BaseService
         try
         {
             var purchase = _purchaseRepository.GetById(id);
-            if (purchase != null) _purchaseRepository.Remove(purchase);
+            if (purchase != null)
+            {
+                var good = _goodRepository.GetById(purchase.GoodId);
+                if (good != null)
+                {
+                    good.Count++;
+                    _context.SaveChanges();
+                }
+                
+                _purchaseRepository.Remove(purchase);
+            }
         }
         catch (Exception e)
         {

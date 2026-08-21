@@ -53,11 +53,11 @@
                     @if (isAdmin)
                     {
                         <a asp-controller="Goods" asp-action="Update" asp-route-id="@good.Id" class="btn btn-outline-dark">Редактировать</a>
-                        <br/> <br/> <a class="btn btn-danger" id="deleteButton" data-id="@good.Id">Удалить</a>
+                        <br/> <br/> <a class="btn btn-danger deleteButton" data-id="@good.Id">Удалить</a>
                     }
                     else
                     {
-                        <a class="btn btn-danger" id="addToCartButton" data-id="@good.Id">В корзину</a>
+                        <a class="btn btn-outline-dark addToCartButton" data-id="@good.Id">В корзину</a>
                     }
                 </td>
             </tr>
