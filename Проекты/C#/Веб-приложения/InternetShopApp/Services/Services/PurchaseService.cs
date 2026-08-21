@@ -8,6 +8,7 @@ using Data.ViewModels;
 using Data.ViewModels.Carts;
 using Data.ViewModels.Orders;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services.Services;
 
@@ -29,7 +30,7 @@ public class PurchaseService : BaseService
         _user = userRepository.GetCurrentUser(userGuid);
     }
 
-    public CartViewModelList GetCart(int pageNumber, int pageSize)
+    public async Task<CartViewModelList> GetCart(int pageNumber, int pageSize)
     {
         if (_user != null)
         {
@@ -38,9 +39,10 @@ public class PurchaseService : BaseService
                 var cart = _user.Role.Title?.ToLower() == "админ"
                     ? _purchaseRepository.GetCart()
                     : _purchaseRepository.GetCartByUserId(_user.Id);
-                
-                var count = cart.Count;
-                var items = cart
+
+                var cartList = await cart.ToListAsync();
+                var count = cartList.Count;
+                var items = cartList
                     .OrderByDescending(x => x.PurchaseDate)
                     .Select(x => new CartViewModelItem
                     {
@@ -68,7 +70,7 @@ public class PurchaseService : BaseService
         return new CartViewModelList();
     }
 
-    public OrderViewModelList GetOrders(int pageNumber, int pageSize)
+    public async Task<OrderViewModelList> GetOrders(int pageNumber, int pageSize)
     {
         if (_user != null)
         {
@@ -77,9 +79,10 @@ public class PurchaseService : BaseService
                 var orders = _user.Role.Title?.ToLower() == "админ"
                     ? _purchaseRepository.GetOrders()
                     : _purchaseRepository.GetOrdersByUserId(_user.Id);
-                
-                var count = orders.Count;
-                var items = orders
+
+                var ordersList = await orders.ToListAsync();
+                var count = ordersList.Count;
+                var items = ordersList
                     .OrderByDescending(x => x.PurchaseDate)
                     .Select(x => new OrderViewModelItem
                     {

@@ -7,6 +7,7 @@ using Data.Enums.PurchaseStatuses;
 using Data.ViewModels;
 using Data.ViewModels.Goods;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services.Services;
 
@@ -40,18 +41,20 @@ public class GoodService : BaseService
 
     public GoodForm BuildForm() => new GoodForm();
 
-    public GoodViewModelList BuildViewModelList(int pageNumber, int pageSize, string title)
+    public async Task<GoodViewModelList> BuildViewModelList(int pageNumber, int pageSize, string title)
     {
         try
         {
             var goods = _goodRepository.GetAll();
             if (!string.IsNullOrWhiteSpace(title))
                 goods = goods
+                    .AsEnumerable()
                     .Where(x => !string.IsNullOrWhiteSpace(x.Title) && x.Title.ToLower().Contains(title.ToLower()))
-                    .ToList();
+                    .AsQueryable();
 
-            var count = goods.Count;
-            var items = goods.Skip((pageNumber - 1) * pageSize).Take(pageSize)
+            var goodsList = await goods.ToListAsync();
+            var count = goodsList.Count;
+            var items = goodsList.Skip((pageNumber - 1) * pageSize).Take(pageSize)
                 .OrderBy(x => x.Title)
                 .Select(x => new GoodViewModelItem
                 {

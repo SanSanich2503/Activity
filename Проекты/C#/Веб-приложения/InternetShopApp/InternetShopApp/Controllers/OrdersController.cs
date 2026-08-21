@@ -15,7 +15,7 @@ public class OrdersController : Controller
     }
     
     public IActionResult Index(int pageNumber = 1, int pageSize = 10)
-        => View(_purchaseService.GetOrders(pageNumber, pageSize));
+        => View(_purchaseService.GetOrders(pageNumber, pageSize).Result);
 
     public IActionResult Cancel(int id)
     {

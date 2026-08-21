@@ -1,4 +1,5 @@
-﻿using Scrutor.AspNetCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Scrutor.AspNetCore;
 
 namespace Core.Entities;
 
@@ -11,7 +12,7 @@ public class BaseRepository<T> : ISelfTransientLifetime where T : Entity
         _context = context;
     }
     
-    public List<T> GetAll() => _context.Set<T>().AsEnumerable().OrderBy(x => x.Title).ToList();
+    public IQueryable<T> GetAll() => _context.Set<T>().AsNoTracking().OrderBy(x => x.Title).AsNoTracking();
     
     public T? GetById(int id) => _context.Set<T>().Find(id);
 

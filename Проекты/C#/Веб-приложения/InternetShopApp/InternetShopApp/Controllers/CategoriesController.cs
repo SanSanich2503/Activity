@@ -16,7 +16,7 @@ public class CategoriesController : Controller
     }
     
     public IActionResult Index(int pageNumber = 1, int pageSize = 10, string name = "")
-        => View(_categoryService.BuildViewModelList(pageNumber, pageSize, name));
+        => View(_categoryService.BuildViewModelList(pageNumber, pageSize, name).Result);
 
     public IActionResult Create()
     {

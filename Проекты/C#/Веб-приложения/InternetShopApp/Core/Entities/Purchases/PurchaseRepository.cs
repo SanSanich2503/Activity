@@ -8,45 +8,45 @@ public class PurchaseRepository : BaseRepository<Purchase>
 {
     public PurchaseRepository(DataContext context) : base(context) { }
     
-    public new List<Purchase> GetAll()
+    public new IQueryable<Purchase> GetAll()
         => _context.Purchases
             .Include(x => x.Good)
             .Include(x => x.PurchaseStatus)
-            .ToList();
+            .AsNoTracking();
     
-    public List<Purchase> GetPurchasesByGoodId(int goodId)
+    public IQueryable<Purchase> GetPurchasesByGoodId(int goodId)
         => _context.Purchases
             .Where(p => p.GoodId == goodId)
-            .ToList();
+            .AsNoTracking();
     
-    public List<Purchase> GetPurchasesByUserId(int userId)
+    public IQueryable<Purchase> GetPurchasesByUserId(int userId)
         => _context.Purchases
             .Where(p => p.UserId == userId)
             .Include(x => x.Good)
             .Include(x => x.PurchaseStatus)
-            .ToList();
+            .AsNoTracking();
     
-    public List<Purchase> GetCart()
+    public IQueryable<Purchase> GetCart()
         => GetAll()
             .Where(x => x.PurchaseStatus.PurchaseStatusEnum == PurchaseStatusEnum.Cart)
-            .ToList();
+            .AsNoTracking();
 
-    public List<Purchase> GetCartByUserId(int userId)
+    public IQueryable<Purchase> GetCartByUserId(int userId)
         => GetPurchasesByUserId(userId)
             .Where(x => x.PurchaseStatus.PurchaseStatusEnum == PurchaseStatusEnum.Cart)
-            .ToList();
+            .AsNoTracking();
     
-    public List<Purchase> GetOrders()
+    public IQueryable<Purchase> GetOrders()
         => GetAll()
             .Where(x => x.PurchaseStatus.PurchaseStatusEnum != PurchaseStatusEnum.Cart)
             .OrderByDescending(x => x.PurchaseDate)
-            .ToList();
+            .AsNoTracking();
     
-    public List<Purchase> GetOrdersByUserId(int userId)
+    public IQueryable<Purchase> GetOrdersByUserId(int userId)
         => GetPurchasesByUserId(userId)
             .Where(x => x.PurchaseStatus.PurchaseStatusEnum != PurchaseStatusEnum.Cart)
             .OrderBy(x => x.PurchaseStatus.PurchaseStatusEnum)
-            .ToList();
+            .AsNoTracking();
 
     public void ChangeStatus(int id, PurchaseStatus purchaseStatus)
     {

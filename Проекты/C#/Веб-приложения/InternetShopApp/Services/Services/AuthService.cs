@@ -1,6 +1,4 @@
 ﻿using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
 using Core;
 using Core.Entities.Roles;
 using Core.Entities.Users;
@@ -33,9 +31,9 @@ public class AuthService : BaseService
         {
             if (ValidateLoginData(model))
             {
-                var email = model.Email?.ToLower();
+                var email = model.Email?.ToLower() ?? "";
                 var password = DbInitializer.HashPassword(model.Password ?? "");
-                var user = _userRepository.GetAll().FirstOrDefault(x => x.Email?.ToLower() == email && x.Password == password);
+                var user = _userRepository.GetByEmailAndPassword(email, password);
 
                 if (user != null)
                 {
@@ -67,8 +65,8 @@ public class AuthService : BaseService
         {
             if (ValidateLoginData(model))
             {
-                var email = model.Email?.ToLower();
-                var existedUser = _userRepository.GetAll().FirstOrDefault(x => x.Email?.ToLower() == email);
+                var email = model.Email?.ToLower() ?? "";
+                var existedUser = _userRepository.GetByEmail(email);
 
                 if (existedUser == null)
                 {
@@ -82,7 +80,7 @@ public class AuthService : BaseService
                         var user = new User
                         {
                             UserGuid = Guid.NewGuid().ToString(),
-                            Email = model.Email,
+                            Email = email,
                             Password = DbInitializer.HashPassword(model.Password ?? ""),
                             Surname = surname,
                             Name = name,

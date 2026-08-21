@@ -2,6 +2,7 @@
 using Core.Entities.Categories;
 using Data.ViewModels;
 using Data.ViewModels.Categories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services.Services;
 
@@ -26,17 +27,19 @@ public class CategoryService : BaseService
 
     public CategoryForm BuildForm() => new CategoryForm();
 
-    public CategoryViewModelList BuildViewModelList(int pageNumber, int pageSize, string title)
+    public async Task<CategoryViewModelList> BuildViewModelList(int pageNumber, int pageSize, string title)
     {
         
         var categories = _categoryRepository.GetAll();
         if (!string.IsNullOrWhiteSpace(title))
             categories = categories
+                .AsEnumerable()
                 .Where(x => !string.IsNullOrWhiteSpace(x.Title) && x.Title.ToLower().Contains(title.ToLower()))
-                .ToList();
+                .AsQueryable();
 
-        var count = categories.Count;
-        var items = categories.Skip((pageNumber - 1) * pageSize).Take(pageSize)
+        var categoriesList = await categories.ToListAsync();
+        var count = categoriesList.Count;
+        var items = categoriesList.Skip((pageNumber - 1) * pageSize).Take(pageSize)
             .OrderBy(x => x.Title)
             .Select(x => new CategoryViewModelItem
             {

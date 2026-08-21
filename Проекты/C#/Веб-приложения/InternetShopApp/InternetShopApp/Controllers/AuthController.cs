@@ -19,7 +19,7 @@ public class AuthController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Login(LoginForm model) 
-        =>_authService.Login(model, ModelState).Result ? RedirectToAction("Index", "Home") : View(model);
+        => _authService.Login(model, ModelState).Result ? RedirectToAction("Index", "Home") : View(model);
     
     [HttpGet]
     public IActionResult Register() => View(new RegisterForm());
@@ -27,7 +27,7 @@ public class AuthController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Register(RegisterForm model) 
-        =>_authService.Register(model, ModelState).Result ? RedirectToAction("Index", "Home") : View(model);
+        => _authService.Register(model, ModelState).Result ? RedirectToAction("Index", "Home") : View(model);
     
     [HttpGet]
     public IActionResult Logout() => _authService.Logout().Result;

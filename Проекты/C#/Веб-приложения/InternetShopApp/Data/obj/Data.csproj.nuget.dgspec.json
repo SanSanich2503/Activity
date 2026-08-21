@@ -80,10 +80,6 @@
             "Scrutor.AspNetCore": {
               "target": "Package",
               "version": "[3.3.0, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[10.2.3, )"
             }
           },
           "imports": [

@@ -16,7 +16,7 @@ public class GoodsController : Controller
     }
     
     public IActionResult Index(int pageNumber = 1, int pageSize = 10, string name = "")
-        => View(_goodService.BuildViewModelList(pageNumber, pageSize, name));
+        => View(_goodService.BuildViewModelList(pageNumber, pageSize, name).Result);
 
     public IActionResult Create()
     {

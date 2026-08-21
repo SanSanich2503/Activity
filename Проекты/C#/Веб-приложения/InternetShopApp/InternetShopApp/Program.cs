@@ -40,8 +40,8 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 services.AddControllersWithViews();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//services.AddEndpointsApiExplorer();
+//services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -56,11 +56,8 @@ app.MapControllerRoute(
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-app.UseSwaggerUI(options =>
-{
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.RoutePrefix = string.Empty;
-});
+//app.UseSwagger();
+//app.UseSwaggerUI();
 
 using (var scope = app.Services.CreateScope())
 {
