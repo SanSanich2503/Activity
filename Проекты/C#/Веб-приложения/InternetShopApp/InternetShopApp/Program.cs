@@ -62,6 +62,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapStaticAssets();
+app.MapGet("/", () => Results.Redirect("/Home"));
 app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")
@@ -72,7 +73,7 @@ using (var scope = app.Services.CreateScope())
     var context = scope.ServiceProvider.GetRequiredService<DataContext>();
     context.Database.Migrate();
     
-    DbInitializer.Initialize(context);
+    await DbInitializer.Initialize(context);
 }
 
 app.Run();

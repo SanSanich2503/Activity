@@ -48,13 +48,13 @@ public class PurchaseRepository : BaseRepository<Purchase>
             .OrderBy(x => x.PurchaseStatus.PurchaseStatusEnum)
             .AsNoTracking();
 
-    public void ChangeStatus(int id, PurchaseStatus purchaseStatus)
+    public async Task ChangeStatus(int id, PurchaseStatus purchaseStatus)
     {
-        var purchase = GetById(id);
+        var purchase = GetById(id).Result;
         if (purchase != null)
         {
             purchase.PurchaseStatus = purchaseStatus;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

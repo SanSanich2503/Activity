@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LZ3gFC5eyJs=",
+  "dgSpecHash": "NkPXH4SGm3w=",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\Activity\\Проекты\\C#\\Веб-приложения\\InternetShopApp\\Core\\Core.csproj",
   "expectedPackageFiles": [
@@ -79,7 +79,21 @@
     "C:\\Users\\user\\.nuget\\packages\\system.composition.typedparts\\9.0.0\\system.composition.typedparts.9.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.security.cryptography.xml\\8.0.4\\system.security.cryptography.xml.8.0.4.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\system.web.http.common\\4.0.20126.16343\\system.web.http.common.4.0.20126.16343.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'System.Web.Http.Common 4.0.20126.16343' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\user\\Desktop\\Activity\\Проекты\\C#\\Веб-приложения\\InternetShopApp\\Core\\Core.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\user\\Desktop\\Activity\\Проекты\\C#\\Веб-приложения\\InternetShopApp\\Core\\Core.csproj",
+      "libraryId": "System.Web.Http.Common",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

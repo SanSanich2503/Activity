@@ -20,6 +20,7 @@
       <PackageReference Include="RabbitMQ.Client" Version="7.2.2" />
       <PackageReference Include="Scrutor.AspNetCore" Version="3.3.0" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+      <PackageReference Include="System.Web.Http.Common" Version="4.0.20126.16343" />
     </ItemGroup>
 
     <ItemGroup>

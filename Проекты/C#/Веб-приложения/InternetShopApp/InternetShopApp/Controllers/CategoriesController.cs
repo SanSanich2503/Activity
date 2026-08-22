@@ -27,11 +27,11 @@ public class CategoriesController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create(CategoryForm form)
+    public async Task<IActionResult> Create(CategoryForm form)
     {
         if (ModelState.IsValid)
         {
-            _categoryService.Create(form);
+            await _categoryService.Create(form);
 
             return RedirectToAction("Index");
         }
@@ -51,11 +51,11 @@ public class CategoriesController : Controller
     }
 
     [HttpPost]
-    public IActionResult Update(CategoryForm form)
+    public async Task<IActionResult> Update(CategoryForm form)
     {
         if (ModelState.IsValid)
         {
-            _categoryService.Update(form);
+            await _categoryService.Update(form);
 
             return RedirectToAction("Index");
         }
@@ -66,9 +66,9 @@ public class CategoriesController : Controller
         return View("CreateUpdate", _categoryService.BuildByForm(form));
     }
 
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        _categoryService.Delete(id);
+        await _categoryService.Delete(id);
 
         return Content("OK");
     }

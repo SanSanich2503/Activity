@@ -17,9 +17,9 @@ public class CartsController : Controller
     public IActionResult Index(int pageNumber = 1, int pageSize = 10)
         => View(_purchaseService.GetCart(pageNumber, pageSize).Result);
     
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        _purchaseService.Delete(id);
+        await _purchaseService.Delete(id);
 
         return Content("OK");
     }

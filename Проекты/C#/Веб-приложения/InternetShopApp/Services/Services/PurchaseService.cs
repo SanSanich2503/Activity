@@ -113,61 +113,92 @@ public class PurchaseService : BaseService
         return new OrderViewModelList();
     }
 
-    public void Delete(int id)
+    public async Task<(bool, string)> Delete(int id)
     {
         try
         {
-            var purchase = _purchaseRepository.GetById(id);
+            var purchase = _purchaseRepository.GetById(id).Result;
             if (purchase != null)
             {
-                var good = _goodRepository.GetById(purchase.GoodId);
+                var good = _goodRepository.GetById(purchase.GoodId).Result;
                 if (good != null)
                 {
                     good.Count++;
-                    _context.SaveChanges();
+                    await _goodRepository.Update(good);
                 }
                 
-                _purchaseRepository.Remove(purchase);
+                await _purchaseRepository.Remove(purchase);
+
+                return (true, "OK");
             }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+
+        return (false, "Элемент не найден");
     }
 
-    public void Cancel(int id)
+    public async Task<(bool, string)> Cancel(int id)
     {
         try
         {
-            var purchaseStatus = _purchaseStatusRepository.GetByEnumId(PurchaseStatusEnum.Cancelled);
-            if (purchaseStatus != null) _purchaseRepository.ChangeStatus(id, purchaseStatus);
+            var purchaseStatus = _purchaseStatusRepository.GetByEnumId(PurchaseStatusEnum.Cancelled).Result;
+            if (purchaseStatus != null)
+            {
+                await _purchaseRepository.ChangeStatus(id, purchaseStatus);
+                
+                return (true, "OK");
+            }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+        
+        return (false, "Не удалось изменить статус");
     }
 
-    public void Complete(int id)
+    public async Task<(bool, string)> Complete(int id)
     {
         try
         {
-            var purchaseStatus = _purchaseStatusRepository.GetByEnumId(PurchaseStatusEnum.Completed);
-            if (purchaseStatus != null) _purchaseRepository.ChangeStatus(id, purchaseStatus);
+            var purchaseStatus = _purchaseStatusRepository
+                .GetByEnumId(PurchaseStatusEnum.Completed).Result;
+            if (purchaseStatus != null)
+            {
+                await _purchaseRepository.ChangeStatus(id, purchaseStatus);
+                
+                return (true, "OK");
+            }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+        
+        return (false, "Не удалось изменить статус");
     }
 
-    public void Return(int id)
+    public async Task<(bool, string)> Return(int id)
     {
         try
         {
-            var purchaseStatus = _purchaseStatusRepository.GetByEnumId(PurchaseStatusEnum.Returned);
-            if (purchaseStatus != null) _purchaseRepository.ChangeStatus(id, purchaseStatus);
+            var purchaseStatus = _purchaseStatusRepository
+                .GetByEnumId(PurchaseStatusEnum.Returned).Result;
+            if (purchaseStatus != null)
+            {
+                await _purchaseRepository.ChangeStatus(id, purchaseStatus);
+                
+                return (true, "OK");
+            }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+        
+        return (false, "Не удалось изменить статус");
     }
 }

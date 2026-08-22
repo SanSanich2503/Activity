@@ -12,7 +12,7 @@ namespace Core;
 
 public static class DbInitializer
 {
-    public static void Initialize(DataContext context)
+    public static async Task Initialize(DataContext context)
     {
         var creationDate = DateTime.Now;
         
@@ -33,7 +33,7 @@ public static class DbInitializer
                     LastModified = creationDate
                 }
             });
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
         if (!context.Users.Any())
@@ -51,7 +51,7 @@ public static class DbInitializer
                     RoleId = adminRole.Id,
                     LastModified = creationDate
                 });
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
@@ -72,7 +72,7 @@ public static class DbInitializer
                     LastModified = creationDate
                 }
             });
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
         if (!context.Goods.Any())
@@ -90,7 +90,7 @@ public static class DbInitializer
                     LastModified = creationDate
                 };
                 context.Goods.Add(good);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 
                 context.GoodToCategories.AddRange(new GoodToCategory
                 {
@@ -98,7 +98,7 @@ public static class DbInitializer
                     CategoryId = shoe.Id,
                     LastModified = creationDate
                 });
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
             
             var cloth = context.Categories.FirstOrDefault(x => x.Title == "Одежда");
@@ -114,7 +114,7 @@ public static class DbInitializer
                     LastModified = creationDate
                 };
                 context.Goods.Add(good);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 
                 context.GoodToCategories.AddRange(new GoodToCategory
                 {
@@ -122,7 +122,7 @@ public static class DbInitializer
                     CategoryId = cloth.Id,
                     LastModified = creationDate
                 });
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
@@ -166,7 +166,7 @@ public static class DbInitializer
                     LastModified = creationDate
                 }
             });
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
     }
     

@@ -22,11 +22,13 @@ public class AuthService : BaseService
     {
         _userRepository = userRepository;
         _roleRepository = roleRepository;
-        _httpContext = httpContextAccessor.HttpContext;
+        _httpContext = httpContextAccessor.HttpContext ??  throw new ArgumentNullException(nameof(httpContextAccessor));
     }
 
-    public async Task<bool> Login(LoginForm model, ModelStateDictionary dictionary)
+    public async Task<(bool, string)> Login(LoginForm model, ModelStateDictionary? dictionary = null)
     {
+        var message = "";
+        
         try
         {
             if (ValidateLoginData(model))
@@ -39,28 +41,33 @@ public class AuthService : BaseService
                 {
                     await Authenticate(user);
                     
-                    return true;
+                    return (true, "Вход в систему выполнен успешно");
                 }
-                
-                dictionary.AddModelError("UserNotFound", "Пользовтель не найден");
 
-                return false;
+                message = "Пользовтель не найден";
+                dictionary?.AddModelError("UserNotFound", message);
+
+                return (false, message);
             }
 
-            dictionary.AddModelError("EmptyEmailOrPassword", "Email или пароль не должны быть пустыми");
+            message = "Email или пароль не должны быть пустыми";
+            dictionary?.AddModelError("EmptyEmailOrPassword", message);
 
-            return false;
+            return (false, message);
         }
         catch (Exception e)
         {
-            dictionary.AddModelError("InnerError", "Произошла внутренняя ошибка сервера");
+            message = "Произошла внутренняя ошибка сервера";
+            dictionary?.AddModelError("InnerError", message);
 
-            return false;
+            return (false, message);
         }
     }
 
-    public async Task<bool> Register(RegisterForm model, ModelStateDictionary dictionary)
+    public async Task<(bool, string)> Register(RegisterForm model, ModelStateDictionary? dictionary = null)
     {
+        var message = "";
+        
         try
         {
             if (ValidateLoginData(model))
@@ -88,40 +95,51 @@ public class AuthService : BaseService
                             Role = role,
                             Title = $"{surname} {name} {patronymic}".Trim()
                         };
-                        _userRepository.Add(user);
+                        await _userRepository.Add(user);
 
                         await Authenticate(user);
 
-                        return true;
+                        return (true, "Пользователь успешно зарегистрирован в системе");
                     }
-                    
-                    dictionary.AddModelError("RoleNotExists", "Роль покупателя не сущестсвует");
 
-                    return false;
+                    message = "Роль покупателя не сущестсвует";
+                    dictionary?.AddModelError("RoleNotExists", "Роль покупателя не сущестсвует");
+
+                    return (false, message);
                 }
-                
-                dictionary.AddModelError("UserExists", "Такой пользователь уже существует");
 
-                return false;
+                message = "Такой пользователь уже существует";
+                dictionary?.AddModelError("UserExists", "Такой пользователь уже существует");
+
+                return (false, message);
             }
 
-            dictionary.AddModelError("EmptyEmailOrPassword", "Email или пароль не должны быть пустыми");
+            message = "Email или пароль не должны быть пустыми";
+            dictionary?.AddModelError("EmptyEmailOrPassword", message);
 
-            return false;
+            return (false, message);
         }
         catch (Exception e)
         {
-            dictionary.AddModelError("InnerError", "Произошла внутренняя ошибка сервера");
+            message = "Произошла внутренняя ошибка сервера";
+            dictionary?.AddModelError("InnerError", message);
 
-            return false;
+            return (false, message);
         }
     }
 
-    public async Task<IActionResult> Logout()
+    public async Task<(bool, string)> Logout()
     {
-        await _httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        
-        return new RedirectToActionResult("Login", "Auth", null);
+        try
+        {
+            await _httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return (true, "Выход из системы успешно выполнен");
+        }
+        catch (Exception e)
+        {
+            return (false, "Произошла внутренняя ошибка сервера");
+        }
     }
 
     public bool IsAdmin()

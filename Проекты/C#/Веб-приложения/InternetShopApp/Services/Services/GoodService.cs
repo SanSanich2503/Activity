@@ -33,7 +33,7 @@ public class GoodService : BaseService
 
     public GoodForm BuildFormById(int id)
     {
-        var good = _goodRepository.GetById(id);
+        var good = _goodRepository.GetById(id).Result;
         if (good != null) return new GoodForm(good.Id, good.Title, good.Description);
 
         return new GoodForm();
@@ -80,7 +80,7 @@ public class GoodService : BaseService
         }
     }
 
-    public void Create(GoodForm form)
+    public async Task<(bool, string)> Create(GoodForm form)
     {
         try
         {
@@ -93,18 +93,22 @@ public class GoodService : BaseService
                 DeliveryDays =  form.DeliveryDays,
                 LastModified =  DateTime.Now
             };
-            _goodRepository.Add(good);
+            
+            await _goodRepository.Add(good);
+            
+            return (true, "OK");
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
     }
 
-    public void Update(GoodForm form)
+    public async Task<(bool, string)> Update(GoodForm form)
     {
         try
         {
-            var good = _goodRepository.GetById(form.Id);
+            var good = _goodRepository.GetById(form.Id).Result;
             if (good != null)
             {
                 good.Title = form.Title;
@@ -113,45 +117,60 @@ public class GoodService : BaseService
                 good.Count = form.Count;
                 good.DeliveryDays = form.DeliveryDays;
                 good.LastModified = DateTime.Now;
-                _goodRepository.Update(good);
+                
+                await _goodRepository.Update(good);
+                
+                return (true, "OK");
             }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+
+        return (false, "Элемент не найден");
     }
     
-    public void Delete(int id)
+    public async Task<(bool, string)> Delete(int id)
     {
         try
         {
-            var good = _goodRepository.GetById(id);
+            var good = _goodRepository.GetById(id).Result;
             if (good != null)
             {
-                _goodRepository.Remove(good);
+                await _goodRepository.Remove(good);
                 
-                var purchases = _purchaseRepository.GetPurchasesByGoodId(id);
-                if (purchases.Any()) _purchaseRepository.RemoveRange(purchases);
+                var purchases = await _purchaseRepository.GetPurchasesByGoodId(id).ToListAsync();
+                if (purchases.Any())
+                {
+                    await _purchaseRepository.RemoveRange(purchases);
+                }
+                
+                return (true, "OK");
             }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+
+        return (false, "Элемент не найден");
     }
 
-    public void AddToCart(int id)
+    public async Task<(bool, string)> AddToCart(int id)
     {
         try
         {
             if (_user != null)
             {
-                var good = _goodRepository.GetById(id);
+                var good = _goodRepository.GetById(id).Result;
                 if (good is { Count: > 0 })
                 {
                     good.Count--;
-                    _context.SaveChanges();
+                    await _goodRepository.Update(good);
                     
-                    var purchaseStatus = _purchaseStatusRepository.GetByEnumId(PurchaseStatusEnum.Cart);
+                    var purchaseStatus = _purchaseStatusRepository
+                        .GetByEnumId(PurchaseStatusEnum.Cart).Result;
                     if (purchaseStatus != null)
                     {
                         var purchase = new Purchase
@@ -161,13 +180,18 @@ public class GoodService : BaseService
                             PurchaseStatusId = purchaseStatus.Id
                         };
 
-                        _purchaseRepository.Add(purchase);
+                        await _purchaseRepository.Add(purchase);
                     }
+                    
+                    return (true, "OK");
                 }
             }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+
+        return (false, "Товар не найден или отсутствует в наличии");
     }
 }

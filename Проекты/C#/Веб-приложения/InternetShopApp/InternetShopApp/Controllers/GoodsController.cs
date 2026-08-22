@@ -27,11 +27,11 @@ public class GoodsController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create(GoodForm form)
+    public async Task<IActionResult> Create(GoodForm form)
     {
         if (ModelState.IsValid)
         {
-            _goodService.Create(form);
+            await _goodService.Create(form);
 
             return RedirectToAction("Index");
         }
@@ -51,11 +51,11 @@ public class GoodsController : Controller
     }
 
     [HttpPost]
-    public IActionResult Update(GoodForm form)
+    public async Task<IActionResult> Update(GoodForm form)
     {
         if (ModelState.IsValid)
         {
-            _goodService.Update(form);
+            await _goodService.Update(form);
 
             return RedirectToAction("Index");
         }
@@ -66,16 +66,16 @@ public class GoodsController : Controller
         return View("CreateUpdate", _goodService.BuildByForm(form));
     }
 
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        _goodService.Delete(id);
+        await _goodService.Delete(id);
 
         return Content("OK");
     }
 
-    public IActionResult AddToCart(int id)
+    public async Task<IActionResult> AddToCart(int id)
     {
-        _goodService.AddToCart(id);
+        await _goodService.AddToCart(id);
         
         return Content("OK");
     }

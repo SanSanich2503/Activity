@@ -4,6 +4,151 @@
         <name>InternetShopApp</name>
     </assembly>
     <members>
+        <member name="M:InternetShopApp.Areas.API.AuthApiController.Login(Data.ViewModels.Auth.LoginForm)">
+            <summary>
+            Вход в систему
+            </summary>
+            <param name="form">Форма для входа в систему</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.AuthApiController.Register(Data.ViewModels.Auth.RegisterForm)">
+            <summary>
+            Регистрация в системе
+            </summary>
+            <param name="form">Форма для регистрации</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.AuthApiController.Logout">
+            <summary>
+            Выход из системы
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.CartsApiController.GetCart(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Получение корзины
+            </summary>
+            <param name="pageNumber">Номер страницы</param>
+            <param name="pageSize">Размер страницы</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.CartsApiController.Delete(System.Int32)">
+            <summary>
+            Удален товара из корзины
+            </summary>
+            <param name="id">Id покупки</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.CategoriesApiController.GetCategories(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            Получение категорий
+            </summary>
+            <param name="pageNumber">Номер страницы</param>
+            <param name="pageSize">Размер страницы</param>
+            <param name="title">Название</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.CategoriesApiController.Create(Data.ViewModels.Categories.CategoryForm)">
+            <summary>
+            Создание категории
+            </summary>
+            <param name="form">Форма для создания категории</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.CategoriesApiController.GetById(System.Int32)">
+            <summary>
+            Получение категории по Id
+            </summary>
+            <param name="id">Id категории</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.CategoriesApiController.Update(Data.ViewModels.Categories.CategoryForm)">
+            <summary>
+            Редактирование категории
+            </summary>
+            <param name="form">Форма для редактирования категории</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.CategoriesApiController.Delete(System.Int32)">
+            <summary>
+            Удаление категории
+            </summary>
+            <param name="id">Id категории</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.GoodsApiController.GetGoods(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            Получение товаров
+            </summary>
+            <param name="pageNumber">Номер страницы</param>
+            <param name="pageSize">Размер страницы</param>
+            <param name="title">Название</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.GoodsApiController.Create(Data.ViewModels.Goods.GoodForm)">
+            <summary>
+            Создание товара
+            </summary>
+            <param name="form">Форма для создания товара</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.GoodsApiController.GetById(System.Int32)">
+            <summary>
+            Получение товара по Id
+            </summary>
+            <param name="id">Id товара</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.GoodsApiController.Update(Data.ViewModels.Goods.GoodForm)">
+            <summary>
+            Редактирование товара
+            </summary>
+            <param name="form">Форма для редактирования товара</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.GoodsApiController.Delete(System.Int32)">
+            <summary>
+            Удаление товара
+            </summary>
+            <param name="id">Id товара</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.GoodsApiController.AddToCart(System.Int32)">
+            <summary>
+            Добавление товара в корзину
+            </summary>
+            <param name="id">Id товара</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.OrdersApiController.GetOrders(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Получение заказов
+            </summary>
+            <param name="pageNumber">Номер страницы</param>
+            <param name="pageSize">Размер страницы</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.OrdersApiController.Cancel(System.Int32)">
+            <summary>
+            Отмена заказа
+            </summary>
+            <param name="id">Id заказа</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.OrdersApiController.Complete(System.Int32)">
+            <summary>
+            Завершение заказа
+            </summary>
+            <param name="id">Id заказа</param>
+            <returns></returns>
+        </member>
+        <member name="M:InternetShopApp.Areas.API.OrdersApiController.Return(System.Int32)">
+            <summary>
+            Возврат заказа
+            </summary>
+            <param name="id">Id заказа</param>
+            <returns></returns>
+        </member>
         <member name="T:Program">
             <summary>
             Auto-generated public partial Program class for top-level statement apps.

@@ -88,6 +88,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[10.2.3, )"
+            },
+            "System.Web.Http.Common": {
+              "target": "Package",
+              "version": "[4.0.20126.16343, )"
             }
           },
           "imports": [

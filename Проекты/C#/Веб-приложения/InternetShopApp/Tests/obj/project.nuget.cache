@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "alKdpBhDVgo=",
+  "dgSpecHash": "Cd/VB64y5aY=",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\Activity\\Проекты\\C#\\Веб-приложения\\InternetShopApp\\Tests\\Tests.csproj",
   "expectedPackageFiles": [
@@ -25,7 +25,21 @@
     "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\10.2.3\\swashbuckle.aspnetcore.swagger.10.2.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\10.2.3\\swashbuckle.aspnetcore.swaggergen.10.2.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.2.3\\swashbuckle.aspnetcore.swaggerui.10.2.3.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\system.web.http.common\\4.0.20126.16343\\system.web.http.common.4.0.20126.16343.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'System.Web.Http.Common 4.0.20126.16343' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\user\\Desktop\\Activity\\Проекты\\C#\\Веб-приложения\\InternetShopApp\\Tests\\Tests.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\user\\Desktop\\Activity\\Проекты\\C#\\Веб-приложения\\InternetShopApp\\Tests\\Tests.csproj",
+      "libraryId": "System.Web.Http.Common",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

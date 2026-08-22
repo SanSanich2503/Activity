@@ -803,6 +803,19 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "System.Web.Http.Common/4.0.20126.16343": {
+        "type": "package",
+        "compile": {
+          "lib/net40/System.Web.Http.Common.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net40/System.Web.Http.Common.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -813,7 +826,8 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.3",
           "RabbitMQ.Client": "7.2.2",
           "Scrutor.AspNetCore": "3.3.0",
-          "Swashbuckle.AspNetCore": "10.2.3"
+          "Swashbuckle.AspNetCore": "10.2.3",
+          "System.Web.Http.Common": "4.0.20126.16343"
         },
         "compile": {
           "bin/placeholder/Core.dll": {}
@@ -831,7 +845,8 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.3",
           "RabbitMQ.Client": "7.2.2",
           "Scrutor.AspNetCore": "3.3.0",
-          "Swashbuckle.AspNetCore": "10.2.3"
+          "Swashbuckle.AspNetCore": "10.2.3",
+          "System.Web.Http.Common": "4.0.20126.16343"
         },
         "compile": {
           "bin/placeholder/Data.dll": {}
@@ -850,7 +865,8 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.3",
           "RabbitMQ.Client": "7.2.2",
           "Scrutor.AspNetCore": "3.3.0",
-          "Swashbuckle.AspNetCore": "10.2.3"
+          "Swashbuckle.AspNetCore": "10.2.3",
+          "System.Web.Http.Common": "4.0.20126.16343"
         },
         "compile": {
           "bin/placeholder/Services.dll": {}
@@ -2816,6 +2832,19 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "System.Web.Http.Common/4.0.20126.16343": {
+      "sha512": "3tybnaxSQAWu2aLSAh+7PRZ8Cw4f/DIECPJZ5yBcnm5sQKjr95zViCasYH3p6Z1hxATSTmlecvCcvlt/FDy+8w==",
+      "type": "package",
+      "path": "system.web.http.common/4.0.20126.16343",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/System.Web.Http.Common.dll",
+        "lib/net40/System.Web.Http.Common.xml",
+        "system.web.http.common.4.0.20126.16343.nupkg.sha512",
+        "system.web.http.common.nuspec"
+      ]
+    },
     "Core/1.0.0": {
       "type": "project",
       "path": "../Core/Core.csproj",
@@ -2844,7 +2873,8 @@
       "RabbitMQ.Client >= 7.2.2",
       "Scrutor.AspNetCore >= 3.3.0",
       "Services >= 1.0.0",
-      "Swashbuckle.AspNetCore >= 10.2.3"
+      "Swashbuckle.AspNetCore >= 10.2.3",
+      "System.Web.Http.Common >= 4.0.20126.16343"
     ]
   },
   "packageFolders": {
@@ -2942,6 +2972,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[10.2.3, )"
+          },
+          "System.Web.Http.Common": {
+            "target": "Package",
+            "version": "[4.0.20126.16343, )"
           }
         },
         "imports": [
@@ -3398,6 +3432,16 @@
       "warningLevel": 1,
       "message": "PackageReference Microsoft.AspNetCore.Cryptography.KeyDerivation will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
       "libraryId": "Microsoft.AspNetCore.Cryptography.KeyDerivation",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Web.Http.Common 4.0.20126.16343' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
+      "libraryId": "System.Web.Http.Common",
       "targetGraphs": [
         "net10.0"
       ]

@@ -19,7 +19,7 @@ public class CategoryService : BaseService
 
     public CategoryForm BuildFormById(int id)
     {
-        var category = _categoryRepository.GetById(id);
+        var category = _categoryRepository.GetById(id).Result;
         if (category != null) return new CategoryForm(category.Id, category.Title, category.Description);
 
         return new CategoryForm();
@@ -29,7 +29,6 @@ public class CategoryService : BaseService
 
     public async Task<CategoryViewModelList> BuildViewModelList(int pageNumber, int pageSize, string title)
     {
-        
         var categories = _categoryRepository.GetAll();
         if (!string.IsNullOrWhiteSpace(title))
             categories = categories
@@ -57,7 +56,7 @@ public class CategoryService : BaseService
         };
     }
 
-    public void Create(CategoryForm form)
+    public async Task<(bool, string)> Create(CategoryForm form)
     {
         try
         {
@@ -67,40 +66,58 @@ public class CategoryService : BaseService
                 Description = form.Description,
                 LastModified = DateTime.Now
             };
-            _categoryRepository.Add(category);
+            
+            await _categoryRepository.Add(category);
+            
+            return (true, "OK");
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
     }
 
-    public void Update(CategoryForm form)
+    public async Task<(bool, string)> Update(CategoryForm form)
     {
         try
         {
-            var category = _categoryRepository.GetById(form.Id);
+            var category = _categoryRepository.GetById(form.Id).Result;
             if (category != null)
             {
                 category.Title = form.Title;
                 category.Description = form.Description;
                 category.LastModified = DateTime.Now;
-                _categoryRepository.Update(category);
+                
+                await _categoryRepository.Update(category);
+                
+                return (true, "OK");
             }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+
+        return (false, "Элемент не найден");
     }
     
-    public void Delete(int id)
+    public async Task<(bool, string)> Delete(int id)
     {
         try
         {
-            var category = _categoryRepository.GetById(id);
-            if (category != null) _categoryRepository.Remove(category);
+            var category = _categoryRepository.GetById(id).Result;
+            if (category != null)
+            {
+                await _categoryRepository.Remove(category);
+                
+                return (true, "OK");
+            }
         }
         catch (Exception e)
         {
+            return (false, "Произошла внутренняя ошибка сервера");
         }
+
+        return (false, "Элемент не найден");
     }
 }

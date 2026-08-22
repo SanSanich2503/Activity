@@ -14,41 +14,41 @@ public class BaseRepository<T> : ISelfTransientLifetime where T : Entity
     
     public IQueryable<T> GetAll() => _context.Set<T>().AsNoTracking().OrderBy(x => x.Title).AsNoTracking();
     
-    public T? GetById(int id) => _context.Set<T>().Find(id);
+    public async Task<T?> GetById(int id) => await _context.Set<T>().FindAsync(id);
 
-    public void Add(T entity)
+    public async Task Add(T entity)
     {
         _context.Set<T>().Add(entity);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public void AddRange(IEnumerable<T> entities)
+    public async Task AddRange(IEnumerable<T> entities)
     {
         _context.Set<T>().AddRange(entities);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public void Update(T entity)
+    public async Task Update(T entity)
     {
         _context.Set<T>().Update(entity);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
     
-    public void UpdateRange(IEnumerable<T> entities)
+    public async Task UpdateRange(IEnumerable<T> entities)
     {
         _context.Set<T>().UpdateRange(entities);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public void Remove(T entity)
+    public async Task Remove(T entity)
     {
         _context.Set<T>().Remove(entity);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public void RemoveRange(IEnumerable<T> entities)
+    public async Task RemoveRange(IEnumerable<T> entities)
     {
         _context.Set<T>().RemoveRange(entities);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 }
