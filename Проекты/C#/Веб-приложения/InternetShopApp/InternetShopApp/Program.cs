@@ -1,12 +1,9 @@
-using System;
+using System.Reflection;
 using Core;
 using Core.Entities;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi;
 using Services.Services;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -41,9 +38,23 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 services.AddControllersWithViews();
 
 services.AddEndpointsApiExplorer();
-services.AddSwaggerGen();
+services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Web API",
+        Description = "API веб-версии приложения"
+    });
+    
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI(c => c.RoutePrefix = "swagger");
 
 app.UseAdvancedDependencyInjection();
 app.UseHttpsRedirection();
@@ -55,9 +66,6 @@ app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
-app.UseSwagger();
-app.UseSwaggerUI();
 
 using (var scope = app.Services.CreateScope())
 {

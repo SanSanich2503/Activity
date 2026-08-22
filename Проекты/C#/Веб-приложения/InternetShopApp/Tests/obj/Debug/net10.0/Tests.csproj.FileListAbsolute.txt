@@ -156,3 +156,8 @@ C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\Int
 C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\Tests\obj\Debug\net10.0\Tests.pdb
 C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\Tests\obj\Debug\net10.0\Tests.genruntimeconfig.cache
 C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\Tests\obj\Debug\net10.0\ref\Tests.dll
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\Tests\bin\Debug\net10.0\Microsoft.OpenApi.dll
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\Tests\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\Tests\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\Tests\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\user\Desktop\Activity\Проекты\C#\Веб-приложения\InternetShopApp\Tests\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
